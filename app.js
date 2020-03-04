@@ -344,7 +344,7 @@ function file_image(path) {
     const lastIndex = currentPathname.lastIndexOf('/');
     const fatherPathname = currentPathname.slice(0, lastIndex + 1);
     let targetObj = localStorage.getItem(fatherPathname);
-    // console.log(`fatherPathname: ${fatherPathname}`);
+    console.log(`fatherPathname: ${fatherPathname}`);
     let targetText = '';
     if (targetObj) {
         try {
@@ -353,7 +353,7 @@ function file_image(path) {
             targetObj = {};
         }
         if (Object.keys(targetObj).length && targetObj[path]) {
-            // console.log(`targetObj ${targetObj[path]}`);
+            console.log(`targetObj ${targetObj[path]}`);
             targetText = `
                 <div id="btns" >
                     ${targetObj[path].prev ? `<span id="leftBtn" data-direction="left" data-filepath="${targetObj[path].prev}"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>` : `<span style="cursor: not-allowed;color: rgba(0,0,0,0.2);margin-bottom:20px;"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>`}
