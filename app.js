@@ -364,6 +364,7 @@ function file_image(path) {
     const fatherPathname = currentPathname.slice(0, lastIndex + 1);
     let targetObj = localStorage.getItem(fatherPathname);
     // console.log(`fatherPathname: ${fatherPathname}`);
+    console.log(targetObj)
     let targetText = '';
     if (targetObj) {
         try {
