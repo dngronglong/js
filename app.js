@@ -121,8 +121,8 @@ function list(path) {
     $('#head_md').hide().html('');
     $.post(path, '{"password":"' + password + '"}', function (data, status) {
         var obj = jQuery.parseJSON(data);
-        localStorage.setItem("fatherPathname",data.files);
-        console.log(obj); 
+        // localStorage.setItem("fatherPathname",data.files);
+        // console.log(obj); 
         if (typeof obj != 'null' && obj.hasOwnProperty('error') && obj.error.code == '401') {
             var pass = prompt("目录加密, 请输入密码", "");
             localStorage.setItem('password' + path, pass);
@@ -356,12 +356,12 @@ function file_audio(path) {
 // 图片展示
 function file_image(path) {
     var url = window.location.origin + path;
-    console.log(window.location.pathname)
+    // console.log(window.location.pathname)
     const currentPathname = window.location.pathname
     const lastIndex = currentPathname.lastIndexOf('/');
     const fatherPathname = currentPathname.slice(0, lastIndex + 1);
     let targetObj = localStorage.getItem(fatherPathname);
-    console.log(`fatherPathname: ${fatherPathname}`);
+    // console.log(`fatherPathname: ${fatherPathname}`);
     let targetText = '';
     if (targetObj) {
         try {
@@ -370,7 +370,7 @@ function file_image(path) {
             targetObj = {};
         }
         if (Object.keys(targetObj).length && targetObj[path]) {
-            console.log(`targetObj ${targetObj[path]}`);
+            // console.log(`targetObj ${targetObj[path]}`);
             targetText = `
                 <div id="btns" >
                     ${targetObj[path].prev ? `<span id="leftBtn" data-direction="left" data-filepath="${targetObj[path].prev}"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>` : `<span style="cursor: not-allowed;color: rgba(0,0,0,0.2);margin-bottom:20px;"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>`}
