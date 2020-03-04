@@ -378,10 +378,16 @@ function file_image(path) {
         if (Object.keys(targetObj).length && targetObj[path]) {
             // console.log(`targetObj ${targetObj[path]}`);
             targetText = `
-            <div class="mdui-col">
-                ${targetObj[path].prev ?`<button id="leftBtn" data-filepath="${targetObj[path].prev}" class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">上一张</button>`:`<button disabled>上一张</button>`}
-                ${targetObj[path].next ?`<button id="rightBtn"  data-filepath="${targetObj[path].next}" class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">下一张</button>`:`<button disabled>下一张</button>`}
-            </div> 
+            <div class="mdui-container">
+                <div class="mdui-row-xs-2">
+                    <div class="mdui-col">
+                        ${targetObj[path].prev ?`<button id="leftBtn" data-filepath="${targetObj[path].prev}" class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">上一张</button>`:`<button disabled>上一张</button>`}
+                    </div>
+                    <div class="mdui-col">
+                        ${targetObj[path].next ?`<button id="rightBtn"  data-filepath="${targetObj[path].next}" class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">下一张</button>`:`<button disabled>下一张</button>`}
+                    </div> 
+                </div>
+            </div>
             `;
         }
         // <div id="btns" >
