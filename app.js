@@ -338,7 +338,7 @@ function file_audio(path) {
 
 // 图片展示
 function file_image(path) {
-  var url = window.location.origin + path;
+    var url = window.location.origin + path;
     console.log(window.location.pathname)
     const currentPathname = window.location.pathname
     const lastIndex = currentPathname.lastIndexOf('/');
