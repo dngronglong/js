@@ -161,6 +161,7 @@ function list_files(path, files) {
 	        </li>`;
         } else {
             var p = path + item.name;
+            const filepath = path + item.name;
             var c = "file";
             if (item.name == "README.md") {
                 get_file(p, item, function (data) {
