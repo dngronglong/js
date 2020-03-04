@@ -339,17 +339,43 @@ function file_audio(path) {
 // 图片展示
 function file_image(path) {
     var url = window.location.origin + path;
+    console.log(window.location.pathname)
+    const currentPathname = window.location.pathname
+    const lastIndex = currentPathname.lastIndexOf('/');
+    const fatherPathname = currentPathname.slice(0, lastIndex + 1);
+    let targetObj = localStorage.getItem(fatherPathname);
+    // console.log(`fatherPathname: ${fatherPathname}`);
+    let targetText = '';
+    if (targetObj) {
+        try {
+            targetObj = JSON.parse(targetObj);
+        } catch (e) {
+            targetObj = {};
+        }
+        if (Object.keys(targetObj).length && targetObj[path]) {
+            // console.log(`targetObj ${targetObj[path]}`);
+            targetText = `
+                <div id="btns" >
+                    ${targetObj[path].prev ? `<span id="leftBtn" data-direction="left" data-filepath="${targetObj[path].prev}"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>` : `<span style="cursor: not-allowed;color: rgba(0,0,0,0.2);margin-bottom:20px;"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>`}
+                    ${targetObj[path].next ? `<span id="rightBtn" data-direction="right"  data-filepath="${targetObj[path].next}"><i class="mdui-icon material-icons">&#xe5c8;</i><span style="margin-left: 10px;">Next</span></span>` : `<span style="cursor: not-allowed;color: rgba(0,0,0,0.2);"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>`}
+                </div>
+            `;
+        }
+    }
     var content = `
 <div class="mdui-container-fluid">
-	<br>
-	<img class="mdui-img-fluid" src="${url}"/>
+    <br>
+    <div id="imgWrap">
+        ${targetText}
+	    <img class="mdui-img-fluid" src="${url}"/>
+    </div>
 	<br>
 	<div class="mdui-textfield">
 	  <label class="mdui-textfield-label">下载地址</label>
 	  <input class="mdui-textfield-input" type="text" value="${url}"/>
 	</div>
 	<div class="mdui-textfield">
-	  <label class="mdui-textfield-label">HTML 引用</label>
+	  <label class="mdui-textfield-label">HTML 引用地址</label>
 	  <input class="mdui-textfield-input" type="text" value="<img src='${url}' />"/>
 	</div>
         <div class="mdui-textfield">
@@ -359,8 +385,19 @@ function file_image(path) {
         <br>
 </div>
 <a href="${url}" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
-	`;
+    `;
+    //my code
     $('#content').html(content);
+    $('#leftBtn, #rightBtn').click((e) => {
+        let target = $(e.target);
+        if (['I', 'SPAN'].includes(e.target.nodeName)) {
+            target = $(e.target).parent();
+        }
+        const filepath = target.attr('data-filepath');
+        const direction = target.attr('data-direction');
+        //console.log(`${direction}翻页 ${filepath}`);
+        file(filepath)
+    });
 }
 
 
