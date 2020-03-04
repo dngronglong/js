@@ -379,17 +379,15 @@ function file_image(path) {
             // console.log(`targetObj ${targetObj[path]}`);
             targetText = `
             <div class="mdui-col">
-                ${targetObj[path].prev ?'<button id="leftBtn" data-filepath="${targetObj[path].prev}" class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">上一张</button>':'<button disabled>上一张</button>'}
-            </div>
-            <div class="mdui-col">
-                ${targetObj[path].next ?'<button id="rightBtn"  data-filepath="${targetObj[path].next}" class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">下一张</button>':'<button disabled>下一张</button>'}
-            </div>
-                <div id="btns" >
-                    ${targetObj[path].prev ? `<span id="leftBtn" data-direction="left" data-filepath="${targetObj[path].prev}"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>` : `<span style="cursor: not-allowed;color: rgba(0,0,0,0.2);margin-bottom:20px;"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>`}
-                    ${targetObj[path].next ? `<span id="rightBtn" data-direction="right"  data-filepath="${targetObj[path].next}"><i class="mdui-icon material-icons">&#xe5c8;</i><span style="margin-left: 10px;">Next</span></span>` : `<span style="cursor: not-allowed;color: rgba(0,0,0,0.2);"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>`}
-                </div>
+                ${targetObj[path].prev ?`<button id="leftBtn" data-filepath="${targetObj[path].prev}" class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">上一张</button>`:`<button disabled>上一张</button>`}
+                ${targetObj[path].next ?`<button id="rightBtn"  data-filepath="${targetObj[path].next}" class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">下一张</button>`:`<button disabled>下一张</button>`}
+            </div> 
             `;
         }
+        // <div id="btns" >
+        //             ${targetObj[path].prev ? `<span id="leftBtn" data-direction="left" data-filepath="${targetObj[path].prev}"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>` : `<span style="cursor: not-allowed;color: rgba(0,0,0,0.2);margin-bottom:20px;"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>`}
+        //             ${targetObj[path].next ? `<span id="rightBtn" data-direction="right"  data-filepath="${targetObj[path].next}"><i class="mdui-icon material-icons">&#xe5c8;</i><span style="margin-left: 10px;">Next</span></span>` : `<span style="cursor: not-allowed;color: rgba(0,0,0,0.2);"><i class="mdui-icon material-icons">&#xe5c4;</i><span style="margin-left: 10px;">Prev</span></span>`}
+        // </div>
     }
     var content = `
 <div class="mdui-container-fluid">
