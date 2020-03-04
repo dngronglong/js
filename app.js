@@ -139,6 +139,7 @@ function list(path) {
 
 function list_files(path, files) {
     html = "";
+    let targetFiles = [];
     for (i in files) {
         var item = files[i];
         var p = path + item.name + '/';
@@ -185,6 +186,20 @@ function list_files(path, files) {
 	          <div class="mdui-col-sm-2 mdui-text-right">${item['size']}</div>
 	          </a>
 	      </li>`;
+        }
+
+        let targetObj = {};
+        targetFiles.forEach((myFilepath, myIndex) => {
+            if (!targetObj[myFilepath]) {
+                targetObj[myFilepath] = {
+                    filepath: myFilepath,
+                    prev: myIndex === 0 ? null : targetFiles[myIndex - 1],
+                    next: myIndex === targetFiles.length - 1 ? null : targetFiles[myIndex + 1],
+                }
+            }
+        })
+        if (Object.keys(targetObj).length) {
+            localStorage.setItem(path, JSON.stringify(targetObj));
         }
     }
     $('#list').html(html);
