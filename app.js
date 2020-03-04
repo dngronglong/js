@@ -200,8 +200,10 @@ function list_files(path, files) {
                 }
             }
         })
+        console.log(targetObj)
         if (Object.keys(targetObj).length) {
             localStorage.setItem(path, JSON.stringify(targetObj));
+            console.log(path)
         }
     }
     $('#list').html(html);
@@ -362,6 +364,7 @@ function file_image(path) {
     const currentPathname = window.location.pathname
     const lastIndex = currentPathname.lastIndexOf('/');
     const fatherPathname = currentPathname.slice(0, lastIndex + 1);
+    console.log(fatherPathname)
     let targetObj = localStorage.getItem(fatherPathname);
     // console.log(`fatherPathname: ${fatherPathname}`);
     console.log(targetObj)
