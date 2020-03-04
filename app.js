@@ -122,7 +122,7 @@ function list(path) {
     $.post(path, '{"password":"' + password + '"}', function (data, status) {
         var obj = jQuery.parseJSON(data);
         localStorage.setItem("fatherPathname",data.files);
-        console.log(obj);
+        console.log(obj); 
         if (typeof obj != 'null' && obj.hasOwnProperty('error') && obj.error.code == '401') {
             var pass = prompt("目录加密, 请输入密码", "");
             localStorage.setItem('password' + path, pass);
